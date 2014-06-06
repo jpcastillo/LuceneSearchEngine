@@ -53,14 +53,11 @@ class Parser {
 		org.jsoup.nodes.Document html = null;
 		try {
 			html = Jsoup.parse(f, "UTF-8");
-			if (html == null) {
-				return null;
-			}
 		}
 		catch (IOException e) {
-			;//System.out.println("IOException: " + e.getMessage());
+			return null;//System.out.println("IOException: " + e.getMessage());
 		}
-		
+
 		try {
 			String title = html.title();
 			String body = html.body().text();
