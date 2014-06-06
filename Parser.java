@@ -91,7 +91,7 @@ class Parser {
 	private static String cutDownString(String target, int maxChars) {
 		if(target == null || target.length() == 0)
 			return "";
-		return target.substring(0, Math.min(target.length()-1, maxChars));
+		return target.substring(0, Math.min(target.length()-1, maxChars-1));
 	}
 	
 	private static String getSnippet(org.jsoup.nodes.Document doc) {
