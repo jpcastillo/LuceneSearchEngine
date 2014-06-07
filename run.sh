@@ -4,7 +4,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
 
 # Compile
-javac -d $DIR/ $DIR/Main.java $DIR/Parser.java;
+javac -d $DIR/ $DIR/Main.java $DIR/Parser.java $DIR/Search.java;
 
 # Run
 # Note to self, cp stands for classpath and it is a colon delimited list of directories

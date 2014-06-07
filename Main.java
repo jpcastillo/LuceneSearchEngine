@@ -5,14 +5,21 @@ public class Main {
 		//System.out.println("Hello world!");
 		String pathToHtmlFile = "/Users/Torcherist/Documents/school/Spring2014/cs172/project/01/web-search-engine/output_directory/www.yale.edu_graduateschool_admissions_";
 		File f = new File(pathToHtmlFile);
-		Parser p = new Parser();
+		/*Parser p = new Parser();
 		if (p.processFile(f)!=null) {
 			System.out.println("Success!");
 		}
 		else {
 			System.out.println("Failure!");
-		}
+		}*/
 		Index i = new Index();
 		i.go("/Users/Torcherist/Documents/school/Spring2014/cs172/project/01/web-search-engine/output_directory");
+		Search s = new Search("/Users/Torcherist/Documents/school/Spring2014/cs172/project/02/code/index");
+		try {
+			s.find("yale school university ucr");
+		}
+		catch (Exception e) {
+			;//
+		}
 	}
 }

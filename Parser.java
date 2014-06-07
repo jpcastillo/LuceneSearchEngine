@@ -100,13 +100,20 @@ class Parser {
 		if(doc == null) {
 			return "";
 		}
-		if((e = doc.select("p").first()) != null) {
+		e = doc.select("p").first();
+		/*
+			Check if there is p tag.
+			Get the parent tags of the first p tag.
+			If the first p tag is not enclosed in a form tag,
+			assign it to be the snippet.
+			Else use text from body tag.
+		*/
+		if (e!=null&&(e.parents().forms()).size()==0) {
 			str = e.text();
 		}
 		if(str == "") {
 			str = doc.body().text();
 		}
-		//System.out.println(";\n"+str+"\n;\n");
 		return cutDownString(str, SNIPPET_LEN);
 	}
 

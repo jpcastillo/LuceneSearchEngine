@@ -42,31 +42,12 @@ class Index {
         String docsPath = htmldir;
         boolean create = true;
 
-        /*for(int i=0;i<args.length;i++) {
-        if ("-index".equals(args[i])) {
-        indexPath = args[i+1];
-        i++;
-        } else if ("-docs".equals(args[i])) {
-        docsPath = args[i+1];
-        i++;
-        } else if ("-update".equals(args[i])) {
-        create = false;
-        }
-        }*/
-
-        /*if (docsPath == null) {
-        System.err.println("Usage: " + usage);
-        System.exit(1);
-        }*/
-
         if (htmldir.length()==0 || indexdir.length()==0) {
             return false;
         }
 
         final File docDir = new File(docsPath);
         if (!docDir.exists() || !docDir.canRead()) {
-            //System.out.println("Document directory '" +docDir.getAbsolutePath()+ "' does not exist or is not readable, please check the path");
-            //System.exit(1);
             return false;
         }
 
@@ -110,11 +91,9 @@ class Index {
             writer.close();
 
             Date end = new Date();
-            System.out.println(end.getTime() - start.getTime() + " total milliseconds");
+            System.out.println("Indexed in " + (end.getTime() - start.getTime()) + " total milliseconds");
         }
         catch (IOException e) {
-            //System.out.println(" caught a " + e.getClass() +
-            // "\n with message: " + e.getMessage());
             return false;
         }
         return true;
@@ -138,15 +117,13 @@ class Index {
                     fis = new FileInputStream(file);
                 }
                 catch (FileNotFoundException fnfe) {
-                    // at least on windows, some temporary files raise this exception with an "access denied" message
-                    // checking if the file can be read doesn't help
                     return;
                 }
 
                 try {
 
                     Document doc = new Document();
-                    
+
                     // Call Parser
                     doc = jparser.processFile(file);
                     if (doc==null) {
@@ -155,14 +132,14 @@ class Index {
 
                     if (writer.getConfig().getOpenMode() == OpenMode.CREATE) {
                         // New index, so we just add the document (no old document can be there):
-                        System.out.println("adding " + file);
+                        //System.out.println("adding " + file);
                         writer.addDocument(doc);
                     }
                     else {
                         // Existing index (an old copy of this document may have been indexed) so 
                         // we use updateDocument instead to replace the old one matching the exact 
                         // path, if present:
-                        System.out.println("updating " + file);
+                        //System.out.println("updating " + file);
                         writer.updateDocument(new Term("path", file.getPath()), doc);
                     }
                 }
