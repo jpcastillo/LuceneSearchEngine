@@ -17,4 +17,5 @@ Main.java is a dummy driver class
 Parser.java creates a Lucene Document for use in Indexing
 
 Link to Web Crawler: https://github.com/jpcastillo/Web-Crawler 
+
 Link to YouTube video: https://youtu.be/l0BTNhHBHGo
